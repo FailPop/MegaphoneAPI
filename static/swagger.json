@@ -1,0 +1,78 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MegaFon API",
+    "description": "API для управления звонками и телефонами",
+    "version": "1.0.0"
+  },
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/calls/incoming": {
+      "post": {
+        "summary": "Регистрация входящего звонка",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Call"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Звонок успешно зарегистрирован"
+          },
+          "400": {
+            "description": "Ошибка валидации данных"
+          }
+        }
+      }
+    },
+    "/calls/outgoing": {
+      "post": {
+        "summary": "Регистрация исходящего звонка",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Call"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Звонок успешно зарегистрирован"
+          },
+          "400": {
+            "description": "Ошибка валидации данных"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Call": {
+      "type": "object",
+      "properties": {
+        "phone_number": {
+          "type": "string"
+        },
+        "call_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "integer"
+        }
+      },
+      "required": ["phone_number", "call_time", "duration"]
+    }
+  }
+}
